@@ -1,13 +1,18 @@
-const express = require('express');
-const app = express();
-const port = 3000; // You can change the port number as needed
+require('dotenv').config()
 
-// Middleware
-app.use(express.json());
+const express = require("express")
+const app = express()
+const mongoose = require('mongoose')
 
-// Routes and API endpoints will be defined here
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', (error) => console.log('Connected to Database'))
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+app.use(express.json())
+
+const usersRouter = require('./routes/users')
+app.use('/users', usersRouter)
+
+
+app.listen(3000, () => console.log("Server Started"))
