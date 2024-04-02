@@ -2,3 +2,44 @@ GET http://localhost:3000/users
 
 ###
 
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{ 
+    "name": "Mr Kocher",
+    "email": "mrkocher@gmail.com",
+    "password": "fakepassword"
+}
+
+###
+
+GET http://localhost:3000/exercises
+
+###
+
+POST http://localhost:3000/exercises
+Content-Type: application/json
+
+{
+    "name": "Bench Press",
+    "userID": "60a1c5f0a5d4f8a0b8c9d1e2",
+    "primaryMuscleGroup": "Chest",
+    "secondaryMuscleGroup": "Triceps"
+}
+
+###
+GET http://localhost:3000/users/660b813e8c177e9c70cf2776
+
+###
+
+DELETE http://localhost:3000/users/660b813e8c177e9c70cf2776
+
+###
+
+
+PATCH http://localhost:3000/users/660bad5fa1e3c5eb5ec31c7d
+Content-Type: application/json
+
+{
+    "name": "Mr Kocherrrr"
+}
