@@ -1,15 +1,43 @@
-GET http://localhost:3000/users
+GET http://localhost:3000/maxWeight
 
 ###
 
-POST http://localhost:3000/users
+GET http://localhost:3000/maxWeight/michael/456
+
+###
+
+PATCH http://localhost:3000/maxWeight/6613a2c5a8ba9ce9e3d76578
+Content-Type: application/json
+
+{
+    "workoutID": "123",
+    "exerciseID": "456",
+    "userID": "michael",
+    "maxWeight": 160,
+    "weightUnit": "lbs"
+}
+
+
+####
+
+POST http://localhost:3000/maxWeight
 Content-Type: application/json
 
 { 
-    "name": "Mr Kocher",
-    "email": "mrkocher@gmail.com",
-    "password": "fakepassword"
+    "workoutID": "123",
+    "exerciseID": "456",
+    "userID": "michael",
+    "weight": 150,
+    "weightUnit": "lbs"
 }
+
+###
+
+PATCH http://localhost:3000/workouts/complete/6612bacf509fe9cfb1f1bfda
+
+###
+
+DELETE http://localhost:3000/sets/6611120478ceedf6a79c30ee
 
 ###
 
@@ -32,7 +60,7 @@ GET http://localhost:3000/users/660b813e8c177e9c70cf2776
 
 ###
 
-DELETE http://localhost:3000/users/660b813e8c177e9c70cf2776
+GET http://localhost:3000/users/username/MrKocherrrr
 
 ###
 
@@ -41,5 +69,5 @@ PATCH http://localhost:3000/users/660bad5fa1e3c5eb5ec31c7d
 Content-Type: application/json
 
 {
-    "name": "Mr Kocherrrr"
+    "username": "Mr Kocherrrr"
 }

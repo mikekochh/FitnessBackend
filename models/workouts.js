@@ -6,18 +6,14 @@ const workoutSchema = new mongoose.Schema({
         ref: 'Users',
         required: true
     },
-    date: {
-        type: Date,
-        required: true
-    },
-    duration: {
-        type: Number,
-        required: true
-    },
     createdDate: {
         type: Date,
         required: true,
         default: Date.now
+    },
+    inProgress: {
+        type: Boolean,
+        required: true
     }
 })
 

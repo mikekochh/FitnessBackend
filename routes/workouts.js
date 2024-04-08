@@ -12,6 +12,21 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.get('/inProgress/:userID', async (req, res) => {
+    try {
+        const workoutInProgress = await Workouts.findOne({ userID: req.params.userID, inProgress: true });
+        if (workoutInProgress === null) {
+            return res.status(404).json({ message: 'No workout in progress' })
+        }
+        else {
+            return res.json(workoutInProgress);
+        }
+        
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 // Getting one workout
 router.get('/:id', getWorkout, (req, res) => {
     res.json(res.workout)
@@ -22,7 +37,8 @@ router.post('/', async (req, res) => {
     const workout = new Workouts({
         userID: req.body.userID,
         date: req.body.date,
-        duration: req.body.duration
+        duration: req.body.duration,
+        inProgress: req.body.inProgress
     })
 
     try {
@@ -30,6 +46,16 @@ router.post('/', async (req, res) => {
         res.status(201).json(newWorkout)
     } catch (err) {
         res.status(400).json({ message: err.message })
+    }
+})
+
+router.patch('/complete/:id', getWorkout, async (req, res) => {
+    res.workout.inProgress = false;
+    try {
+        const updatedWorkout = await res.workout.save();
+        res.status(201).json(updatedWorkout);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
     }
 })
 
@@ -62,6 +88,7 @@ router.delete('/:id', getWorkout, async (req, res) => {
 async function getWorkout(req, res, next) {
     let workout
     try {
+        console.log("req.params: ", req.params);
         workout = await Workouts.findById(req.params.id)
         if (workout == null) {
             return res.status(404).json({ message: 'Cannot find workout' })
