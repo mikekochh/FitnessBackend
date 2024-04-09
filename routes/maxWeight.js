@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const MaxWeights = require('../models/maxWeights')
+const MaxWeights = require('../models/userMaxWeights')
 
 // Getting all
 router.get('/', async (req, res) => {

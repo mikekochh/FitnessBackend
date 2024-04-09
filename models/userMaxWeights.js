@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const maxWeightSchema = new mongoose.Schema({
+const userMaxWeightSchema = new mongoose.Schema({
     userID: {
         type: String,
         required: true
@@ -23,4 +23,4 @@ const maxWeightSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("MaxWeight", maxWeightSchema)
+module.exports = mongoose.model("UserMaxWeight", userMaxWeightSchema)
