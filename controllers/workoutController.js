@@ -1,5 +1,6 @@
 const workoutService = require('../services/workoutService');
 const userMaxWeightService = require('../services/userMaxWeightService');
+const userPRService = require('../services/userPRService');
 
 exports.getAllWorkouts = async (req, res) => {
     try {
@@ -46,8 +47,8 @@ exports.createWorkout = async (req, res) => {
 exports.completeWorkout = async (req, res) => {
     try {
         const updatedWorkout = await workoutService.completeWorkout(req.params.id);
-        console.log("updatedWporkout: ", updatedWorkout);
         const updatedUserMaxWeight = await userMaxWeightService.checkAndUpdateMaxWeight(req.params.id, updatedWorkout.userID);
+        const updateUserPR = await userPRService.checkAndUpdatePR(req.params.id, updatedWorkout.userID);
         res.status(201).json(updatedWorkout);
     } catch (err) {
         res.status(400).json({ message: err.message });

@@ -23,7 +23,10 @@ app.use('/workouts', workoutsRouter)
 const setsRouter = require('./routes/sets')
 app.use('/sets', setsRouter)
 
-const maxWeightRouter = require('./routes/maxWeight')
-app.use('/maxWeight', maxWeightRouter)
+const userMaxWeightRouter = require('./routes/userMaxWeight')
+app.use('/userMaxWeight', userMaxWeightRouter)
+
+const userPRRouter = require('./routes/userPR')
+app.use('/userPR', userPRRouter)
 
 app.listen(3000, () => console.log("Server Started"))

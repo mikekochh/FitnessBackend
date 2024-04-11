@@ -1,7 +1,15 @@
 const UserMaxWeights = require('../models/userMaxWeights');
 const Sets = require('../models/sets')
 
-exports.checkAndUpdateMaxWeight = async (workoutID, userID) => {
+async function getAllMaxWeights() {
+    return await UserMaxWeights.find();
+}
+
+async function getMaxWeightFromUserIDAndExerciseID(userID, exerciseID) {
+    return await UserMaxWeights.find({ userID, exerciseID });
+}
+
+async function checkAndUpdateMaxWeight(workoutID, userID) {
     try {
         console.log("userID: ", userID);
         const workoutSets = await Sets.find({ workoutID });
@@ -43,4 +51,10 @@ exports.checkAndUpdateMaxWeight = async (workoutID, userID) => {
     } catch (err) {
         console.error('Error updating Max Weight:', err);
     }
+};
+
+module.exports = {
+    getAllMaxWeights,
+    getMaxWeightFromUserIDAndExerciseID,
+    checkAndUpdateMaxWeight
 };
