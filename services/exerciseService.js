@@ -32,6 +32,9 @@ exports.updateExercise = async (id, updateData) => {
     if (updateData.secondaryMuscleGroup != null) {
         exercise.secondaryMuscleGroup = updateData.secondaryMuscleGroup;
     }
+    if (updateData.isBodyweight != null) {
+        exercise.isBodyweight = updateData.isBodyweight;
+    }
 
     return await exercise.save();
 };

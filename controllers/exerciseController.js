@@ -23,6 +23,7 @@ exports.getExerciseById = async (req, res) => {
 
 exports.createExercise = async (req, res) => {
     try {
+        console.log("We are creating a new exercise here");
         const newExercise = await exerciseService.createExercise(req.body);
         res.status(201).json(newExercise);
     } catch (err) {

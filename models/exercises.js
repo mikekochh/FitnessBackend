@@ -21,6 +21,10 @@ const exerciseSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    isBodyweight: {
+        type: Boolean,
+        required: true
     }
 })
 
